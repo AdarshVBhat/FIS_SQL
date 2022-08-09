@@ -87,11 +87,26 @@ select ENAME, EMPNO, SAL, DEPTNO from EMP where DEPTNO = 20
 --4
 select *, SAL as 'Old Salary', SAL+(SAL*0.1) as 'New Salary' from EMP where DEPTNO = 20
 
+--5
+select count (JOB) as 'Number of Clerks' from EMP where JOB = 'CLERK'
 
+--6
+
+
+--7
+select max(SAL) as 'Highest Salary', min(SAL) as 'Lowest Salary' from EMP 
+
+--8
+select * from DEPT where DEPTNO NOT IN ( select DEPTNO from EMP)
+
+--9
+select ENAME, SAL from EMP where DEPTNO = 20 and SAL >1200 and JOB = 'Analyst' order by ENAME ASC
+
+--10
 
 
 --11
-(select ENAME, SAL from EMP where ENAME = 'MILLER') UNION (select ENAME, SAL from EMP where ENAME = 'SMITH')
+select ENAME, SAL from EMP where ENAME = 'MILLER' UNION (select ENAME, SAL from EMP where ENAME = 'SMITH')
 
 --12
 select ENAME from EMP where ENAME like '[aM]%'
