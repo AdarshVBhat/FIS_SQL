@@ -91,19 +91,19 @@ select *, SAL as 'Old Salary', SAL+(SAL*0.1) as 'New Salary' from EMP where DEPT
 select count (JOB) as 'Number of Clerks' from EMP where JOB = 'CLERK'
 
 --6
-
+select JOB as 'Job Type', avg(SAL) as 'Average Salary', count(*) as 'No. of Employees' from EMP group by JOB
 
 --7
-select max(SAL) as 'Highest Salary', min(SAL) as 'Lowest Salary' from EMP 
+select * from EMP where SAL in((select max(SAL) from EMP) union (select min(SAL) from EMP));
 
 --8
 select * from DEPT where DEPTNO NOT IN ( select DEPTNO from EMP)
 
 --9
-select ENAME, SAL from EMP where DEPTNO = 20 and SAL >1200 and JOB = 'Analyst' order by ENAME ASC
+select ENAME, SAL from EMP where JOB='Analyst' and SAL>1200 and DeptNo=20 order by ENAME ASC
 
 --10
-
+select DEPT.DEPTNO, DEPT.DNAME, sum(SAL) as 'TOTAL SALARY' from EMP, DEPT where EMP.DEPTNO=DEPT.DEPTNO group by DEPT.DEPTNO, DEPT.DNAME
 
 --11
 select ENAME, SAL from EMP where ENAME = 'MILLER' UNION (select ENAME, SAL from EMP where ENAME = 'SMITH')
@@ -116,3 +116,10 @@ select ENAME, SAL*12 as 'Annual Salary' from EMP where ENAME = 'SMITH'
 
 --14
 select ENAME, SAL from EMP where SAL NOT BETWEEN 1500 and 2850 ORDER BY SAL ASC
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+select e2.ENAME, e1.SAL, e1.ENAME as MANAGER_NAME from EMP e1 join EMP e2 on e1.EMPNO=e2.MGR_ID
+
+select EMPNO, SUM(SAL) FROM EMP GROUP BY DEPTNO
+
+
+
