@@ -94,7 +94,7 @@ select count (JOB) as 'Number of Clerks' from EMP where JOB = 'CLERK'
 select JOB as 'Job Type', avg(SAL) as 'Average Salary', count(*) as 'No. of Employees' from EMP group by JOB
 
 --7
-select * from EMP where SAL in((select max(SAL) from EMP) union (select min(SAL) from EMP));
+select * from EMP where SAL in((select max(SAL) from EMP) union (select min(SAL) from EMP))
 
 --8
 select * from DEPT where DEPTNO NOT IN ( select DEPTNO from EMP)
